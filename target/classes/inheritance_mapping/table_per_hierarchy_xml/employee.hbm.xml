@@ -1,0 +1,24 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="inheritance_mapping.table_per_hierarchy_xml.Employee" table="employee"
+           discriminator-value="emp">
+        <!--id phai giong field trong lop Employee-->
+        <!--column la ten cot de duoc dat trong db-->
+        <id name="id" column="e_id">
+            <generator class="increment"/>
+        </id>
+        <discriminator column="emp_type" />
+        <property name="name" column="e_name"/>
+        <subclass name="inheritance_mapping.table_per_hierarchy_xml.RegularEmployee" discriminator-value="reg_emp">
+            <property name="salary" column="salary"/>
+            <property name="bonus" column="bonus"/>
+        </subclass>
+        <subclass name="inheritance_mapping.table_per_hierarchy_xml.ContractEmployee" discriminator-value="con_emp">
+            <property name="payPerHour" column="pay_per_hour"/>
+            <property name="contractPeriod" column="contract_period"/>
+        </subclass>
+    </class>
+</hibernate-mapping>

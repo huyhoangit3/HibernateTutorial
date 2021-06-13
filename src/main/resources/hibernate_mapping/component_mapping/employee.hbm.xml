@@ -1,0 +1,17 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="hibernate_mapping.component_mapping.Employee" table="employee">
+        <id name="employeeId" type="int" column="e_id">
+            <generator class="increment"/>
+        </id>
+        <property name="name" column="e_name"/>
+        <component name="address" class="hibernate_mapping.component_mapping.Address">
+            <property name="commune" column="e_commune"/>
+            <property name="district" column="e_district"/>
+            <property name="province" column="e_province"/>
+        </component>
+    </class>
+</hibernate-mapping>

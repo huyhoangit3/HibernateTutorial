@@ -1,0 +1,22 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="inheritance_mapping.table_per_concrete_xml.Employee" table="employee">
+        <id name="id" column="e_id">
+            <generator class="increment"/>
+        </id>
+        <property name="name" column="e_name"/>
+    </class>
+    <union-subclass name="inheritance_mapping.table_per_concrete_xml.RegularEmployee"
+                    table="reg_emp" extends="inheritance_mapping.table_per_concrete_xml.Employee">
+        <property name="salary" column="salary"/>
+        <property name="bonus" column="bonus"/>
+    </union-subclass>
+    <union-subclass name="inheritance_mapping.table_per_concrete_xml.ContractEmployee"
+                    table="con_emp" extends="inheritance_mapping.table_per_concrete_xml.Employee">
+        <property name="payPerHour" column="pay_per_hour"/>
+        <property name="contractPeriod" column="contract_period"/>
+    </union-subclass>
+</hibernate-mapping>

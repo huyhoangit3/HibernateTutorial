@@ -1,0 +1,30 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <!--value of name property must same with field name in persistant class.-->
+    <class name="hibernate_mapping.one_to_many.xml.Question" table="questions">
+        <!--demonstrate primary key of questions table in db-->
+        <id name="qid" column="question_id">
+            <generator class="increment"/>
+        </id>
+        <property name="qname" column="question_name"/>
+        <list name="answers" cascade="all">
+            <!--this column is considering as foreign key of answers table in db.-->
+            <key column="question_id"/>
+            <!--this is index of element in list.-->
+            <index column="type"/>
+            <!--use one-to-many element with reference type.-->
+            <one-to-many class="hibernate_mapping.one_to_many.xml.Answer" />
+        </list>
+    </class>
+    <class name="hibernate_mapping.one_to_many.xml.Answer" table="answers">
+        <!--demonstrate primary key of questions table in db-->
+        <id name="aid" column="answer_id">
+            <generator class="increment"/>
+        </id>
+        <property name="acontent" column="answer_content"/>
+        <property name="aby" column="answer_by"/>
+    </class>
+</hibernate-mapping>

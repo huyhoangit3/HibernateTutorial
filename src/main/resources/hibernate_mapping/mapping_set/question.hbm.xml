@@ -1,0 +1,16 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="hibernate_mapping.mapping_set.Question" table="questions">
+        <id name="qid" column="question_id">
+            <generator class="increment"/>
+        </id>
+        <property name="qname" column="question_name"/>
+        <set name="answers" table="answers">
+            <key column="question_id"/>
+            <element column="answer" type="string"/>
+        </set>
+    </class>
+</hibernate-mapping>
